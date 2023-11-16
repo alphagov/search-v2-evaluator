@@ -1,1 +1,11 @@
-<h1>Search</h1>
+<div class="query-container govuk-grid-row">
+  <%= form_with url: search_path, method: :get do |form| %>
+    <div class="govuk-grid-column-two-thirds">
+      <%= render "govuk_publishing_components/components/search", {
+        inline_label: false,
+        value: @search.query,
+        name: "query",
+      } %>
+    </div>
+  <% end %>
+</div>
