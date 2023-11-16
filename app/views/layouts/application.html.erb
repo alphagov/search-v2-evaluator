@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>SearchV2Evaluator</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application" %>
-    <%= javascript_importmap_tags %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
-</html>
+<%= render "govuk_publishing_components/components/layout_for_admin", {
+  environment: "integration",
+  product_name: "Search Evaluation",
+  browser_title: yield(:title).presence || "Search v2 Evaluation Tool",
+} do %>
+  <%= render "govuk_publishing_components/components/skip_link" %>
+  <%= render "govuk_publishing_components/components/layout_header", {
+    environment: "integration",
+    product_name: "Search v2 Evaluation Tool",
+  } %>
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper">
+      <%= yield %>
+    </main>
+  </div>
+  <%= render "govuk_publishing_components/components/layout_footer" %>
+  <%= javascript_importmap_tags %>
+<% end %>
