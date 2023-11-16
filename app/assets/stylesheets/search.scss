@@ -7,36 +7,95 @@
   margin: 0;
 }
 
-.search-results__item {
-  display: grid;
-  grid-template-columns: 6fr repeat(4, minmax(auto, 1fr));;
+.search-results__result {
+  display: flex;
 
-  padding-top: govuk-spacing(2);
-  margin-bottom: govuk-spacing(3);
-  border-top: 1px solid govuk-colour("mid-grey");
+  border-top: 1px solid $govuk-border-colour;
+  padding-top: govuk-spacing(4);
+  margin-bottom: govuk-spacing(4);
+
+  @include govuk-font($size: 16);
+}
+
+.search-results__details {
+  flex: 1;
 }
 
 .search-results__title {
-  @include govuk-font($size: 19, $weight: "bold");
+  margin: 0;
 
-  margin: 0 0 govuk-spacing(1) 0;
+  @include govuk-font($size: 19, $weight: "bold");
 }
 
 .search-results__description {
-  @include govuk-font($size: 16);
-
-  margin: 0 0 govuk-spacing(2) 0;
+  margin: govuk-spacing(1) 0 0 0;
 }
 
 .search-results__metadata {
-  @include govuk-font($size: 16);
-
+  margin: govuk-spacing(2) 0 0 0;
   color: $govuk-secondary-text-colour;
-
-  margin: 0;
 }
 
 .search-results__ranking {
-  background-color: #eee;
-  margin-right: govuk-spacing(1);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: govuk-spacing(2);
+
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-results__ranking-legend {
+  display: none;
+}
+
+.search-results__ranking-option {
+  text-align: center;
+}
+
+.search-results__ranking-option input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  width: govuk-spacing(6);
+  height: govuk-spacing(6);
+  margin: 0;
+  outline: 4px solid black;
+  border: 6px solid white;
+  border-radius: 50%;
+}
+
+.search-results__ranking-option input:checked {
+  padding: 2px;
+}
+
+.search-results__ranking-option input:focus {
+  // outline: 4px solid $govuk-focus-colour;
+  // border: 4px solid $govuk-text-colour;
+  box-shadow: 0 0 0 8px $govuk-focus-colour;
+}
+
+.search-results__ranking-option--perfect input:checked {
+  background-color: govuk-colour("blue");
+}
+
+.search-results__ranking-option--good input:checked {
+  background-color: govuk-colour("green");
+}
+
+.search-results__ranking-option--ok input:checked {
+  background-color: govuk-colour("orange");
+}
+
+.search-results__ranking-option--bad input:checked {
+  background-color: govuk-colour("red");
+}
+
+.search-results__ranking-option label {
+  display: block;
+  margin-top: govuk-spacing(1);
+
+  text-align: center;
 }

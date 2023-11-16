@@ -4,19 +4,16 @@ class Search
   attr_accessor :query
 
   def results
-    [
-      {
-        link: {
-          text: "Test result for #{query}",
-          path: "/test",
-          description: "Lorem ipsum dolor sit amet.",
-        },
-        metadata: {
-          public_updated_at: Time.parse("2021-11-25T10:15:49.000+00:00"),
-          document_type: "travel_advice",
-        },
-      },
-    ] * 5
+    displayed_count.times.map do |i|
+      Result.new(
+        title: "Foo",
+        description: "Bar",
+        link: "http://example.com/foo",
+        metadata: { foo: "bar" },
+        content_id: "0000-0000-0000-000#{i}",
+        document_type: "foo",
+      )
+    end
   end
 
   def displayed_count
