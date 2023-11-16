@@ -10,10 +10,15 @@
   <% end %>
 </div>
 
+
 <div class="results-container govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <%= render "govuk_publishing_components/components/document_list", {
-      items: @search.results,
-    } %>
+  <div class="search-results govuk-grid-column-full">
+    <h2 class="govuk-heading-s">Showing top <%= pluralize(@search.displayed_count, "result") %> (out of <%= @search.total_count %>)</h2>
+
+    <ul class="search-results__list">
+      <% @search.results.each do |result| %>
+        <%= render partial: "result", locals: { result: } %>
+      <% end %>
+    </ul>
   </div>
 </div>

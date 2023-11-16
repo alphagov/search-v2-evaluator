@@ -1,2 +1,42 @@
 @import 'govuk_publishing_components/govuk_frontend_support';
 @import 'govuk_publishing_components/component_support';
+
+.search-results__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-results__item {
+  display: grid;
+  grid-template-columns: 6fr repeat(4, minmax(auto, 1fr));;
+
+  padding-top: govuk-spacing(2);
+  margin-bottom: govuk-spacing(3);
+  border-top: 1px solid govuk-colour("mid-grey");
+}
+
+.search-results__title {
+  @include govuk-font($size: 19, $weight: "bold");
+
+  margin: 0 0 govuk-spacing(1) 0;
+}
+
+.search-results__description {
+  @include govuk-font($size: 16);
+
+  margin: 0 0 govuk-spacing(2) 0;
+}
+
+.search-results__metadata {
+  @include govuk-font($size: 16);
+
+  color: $govuk-secondary-text-colour;
+
+  margin: 0;
+}
+
+.search-results__ranking {
+  background-color: #eee;
+  margin-right: govuk-spacing(1);
+}

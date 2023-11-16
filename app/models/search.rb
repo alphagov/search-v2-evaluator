@@ -18,4 +18,12 @@ class Search
       },
     ] * 5
   end
+
+  def displayed_count
+    3
+  end
+
+  def total_count
+    42
+  end
 end
