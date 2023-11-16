@@ -9,3 +9,11 @@
     </div>
   <% end %>
 </div>
+
+<div class="results-container govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= render "govuk_publishing_components/components/document_list", {
+      items: @search.results,
+    } %>
+  </div>
+</div>
