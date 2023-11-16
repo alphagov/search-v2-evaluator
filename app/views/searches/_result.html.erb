@@ -1,7 +1,7 @@
 <li class="search-results__result">
   <div class="search-results__details">
     <h2 class="search-results__title">
-      <%= link_to result.title, result.link, class: "govuk-link" %>
+      <%= govuk_link_to result.title, result.link %>
     </h2>
     <p class="search-results__description"><%= result.description %></p>
     <div class="search-results__metadata">

@@ -1,7 +1,7 @@
 require "gds_api/search"
 
 class Search
-  MAX_RESULTS = 3
+  MAX_RESULTS = 10
 
   include ActiveModel::Model
 
