@@ -61,9 +61,9 @@
 
   width: govuk-spacing(6);
   height: govuk-spacing(6);
-  margin: 0;
-  outline: 4px solid black;
-  border: 6px solid white;
+  margin: 0 0 0 2px;
+  outline: 3px solid black;
+  border: 5px solid white;
   border-radius: 50%;
 }
 
@@ -95,7 +95,8 @@
 
 .search-results__ranking-option label {
   display: block;
-  margin-top: govuk-spacing(1);
+  margin-bottom: govuk-spacing(2);
 
   text-align: center;
+  @include govuk-font($size: 14);
 }

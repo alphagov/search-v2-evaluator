@@ -14,20 +14,20 @@
       How relevant is this result?
     </legend>
     <label class="search-results__ranking-option search-results__ranking-option--perfect">
-      <%= radio_button result.content_id, "ranking", "perfect" %>
       <%= label result.content_id, "ranking", "Perfect", value: "perfect" %>
+      <%= radio_button result.content_id, "ranking", "perfect" %>
     </label>
     <label class="search-results__ranking-option search-results__ranking-option--good">
-      <%= radio_button result.content_id, "ranking", "good" %>
       <%= label result.content_id, "ranking", "Good", value: "good" %>
+      <%= radio_button result.content_id, "ranking", "good" %>
     </label>
     <label class="search-results__ranking-option search-results__ranking-option--ok">
+      <%= label result.content_id, "ranking", "Okay", value: "ok" %>
       <%= radio_button result.content_id, "ranking", "ok" %>
-      <%= label result.content_id, "ranking", "OK", value: "ok" %>
     </label>
     <label class="search-results__ranking-option search-results__ranking-option--bad">
-      <%= radio_button result.content_id, "ranking", "bad" %>
       <%= label result.content_id, "ranking", "Bad", value: "bad" %>
+      <%= radio_button result.content_id, "ranking", "bad" %>
     </label>
   </fieldset>
 </li>
