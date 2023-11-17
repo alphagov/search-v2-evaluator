@@ -3,6 +3,8 @@
     <div class="govuk-grid-column-two-thirds">
       <%= render "govuk_publishing_components/components/search", {
         inline_label: false,
+        label_size: "m",
+        label_text: "Search GOV.UK using the new search engine",
         value: @search.query,
         name: "query",
       } %>
@@ -15,7 +17,7 @@
           name: "search_options[]",
           heading: "Search options",
           visually_hide_heading: true,
-          no_hint_text: true,
+          hint_text: "Select any of these options to change how search results are displayed. You will need to search again for these changes to be visible.",
           small: true,
           items: [
             {
@@ -24,7 +26,7 @@
               checked: @search.search_options&.include?("show_extra_results")
             },
             {
-              label: "Show detailed metadata for results",
+              label: "Show detailed information about results (document types, dates)",
               value: "show_debug_metadata",
               checked: @search.search_options&.include?("show_debug_metadata")
             }
