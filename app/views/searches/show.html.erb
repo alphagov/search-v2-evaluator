@@ -55,7 +55,7 @@
         </h2>
       </div>
       <div class="results-container__rate govuk-grid-column-one-half">
-        <a href="#" class="govuk-link">Learn how to rate results</a>
+        <%= link_to "Learn how to rate results", how_to_rate_path, class: "govuk-link" %>
       </div>
     </div>
     <%= form_with url: feedback_path do %>
