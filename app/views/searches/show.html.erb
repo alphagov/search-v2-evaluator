@@ -6,6 +6,31 @@
         value: @search.query,
         name: "query",
       } %>
+      <% options_selected = @search.search_options&.count || 0 %>
+      <% options_selected_text = " (#{options_selected} selected)" if options_selected.positive? %>
+      <%= render "govuk_publishing_components/components/details", {
+        title: "Advanced options#{options_selected_text}",
+      } do %>
+        <%= render "govuk_publishing_components/components/checkboxes", {
+          name: "search_options[]",
+          heading: "Search options",
+          visually_hide_heading: true,
+          no_hint_text: true,
+          small: true,
+          items: [
+            {
+              label: "Show top 10 results (instead of 5)",
+              value: "show_extra_results",
+              checked: @search.search_options&.include?("show_extra_results")
+            },
+            {
+              label: "Show debug metadata",
+              value: "show_debug_metadata",
+              checked: @search.search_options&.include?("show_debug_metadata")
+            }
+          ]
+        } %>
+      <% end %>
     </div>
   <% end %>
 </div>
@@ -13,11 +38,14 @@
 
 <div class="results-container govuk-grid-row">
   <div class="search-results govuk-grid-column-full">
-    <h2 class="govuk-heading-s">Showing top <%= pluralize(@search.displayed_count, "result") %> (out of <%= @search.total_count %>)</h2>
+    <h2 class="govuk-heading-s">
+      Showing top <%= pluralize(@search.displayed_count, "result") %>
+      (out of <%= number_with_delimiter(@search.total_count) %>)
+    </h2>
 
     <ul class="search-results__list">
       <% @search.results.each do |result| %>
-        <%= render partial: "result", locals: { result: } %>
+        <%= render partial: "result", locals: { result:, show_debug_metadata: @search.search_options&.include?("show_debug_metadata") } %>
       <% end %>
     </ul>
   </div>

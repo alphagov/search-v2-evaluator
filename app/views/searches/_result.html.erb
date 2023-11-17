@@ -4,10 +4,12 @@
       <%= govuk_link_to result.title, result.link %>
     </h2>
     <p class="search-results__description"><%= result.description %></p>
-    <div class="search-results__metadata">
-      Content ID: <%= result.content_id %>,
-      Document Type: <%= result.document_type %>
-    </div>
+    <% if show_debug_metadata %>
+      <div class="search-results__metadata">
+        Content ID: <%= result.content_id %>,
+        Document Type: <%= result.document_type %>
+      </div>
+    <% end %>
   </div>
   <fieldset class="search-results__ranking">
     <legend class="search-results__ranking-legend">

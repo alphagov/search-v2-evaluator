@@ -1,6 +1,14 @@
 @import 'govuk_publishing_components/govuk_frontend_support';
 @import 'govuk_publishing_components/component_support';
 
+.query-container {
+  margin-bottom: govuk-spacing(4);
+}
+
+.query-container .gem-c-search {
+  margin-bottom: govuk-spacing(2);
+}
+
 .search-results__list {
   list-style: none;
   padding: 0;

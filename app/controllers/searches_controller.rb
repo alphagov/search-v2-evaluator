@@ -6,6 +6,6 @@ class SearchesController < ApplicationController
 private
 
   def query_params
-    params.permit(:query)
+    params.permit(:query, search_options: [])
   end
 end

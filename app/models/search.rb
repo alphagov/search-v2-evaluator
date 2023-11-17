@@ -1,11 +1,9 @@
 require "gds_api/search"
 
 class Search
-  MAX_RESULTS = 10
-
   include ActiveModel::Model
 
-  attr_accessor :query
+  attr_accessor :query, :search_options
 
   def results
     response["results"].map do |result|
@@ -29,10 +27,14 @@ class Search
 
 private
 
+  def count
+    search_options&.include?("show_extra_results") ? 10 : 5
+  end
+
   def response
     @response ||= search_service.search(
       q: query,
-      count: MAX_RESULTS,
+      count:,
     ).to_hash
   end
 
