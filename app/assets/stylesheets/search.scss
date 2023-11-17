@@ -135,3 +135,12 @@
   text-align: center;
   @include govuk-font($size: 14);
 }
+
+.search-feedback {
+  padding-top: govuk-spacing(4);
+  border-top: 1px solid $govuk-border-colour;
+}
+
+.search-feedback__submit {
+  text-align: right;
+}
