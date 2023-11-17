@@ -9,6 +9,12 @@
   margin-bottom: govuk-spacing(2);
 }
 
+.results-container__rate {
+  @include govuk-font($size: 19);
+
+  text-align: right;
+}
+
 .search-results__list {
   list-style: none;
   padding: 0;
@@ -62,8 +68,7 @@
 
 .search-results__metadata-item--content-type {
   font-weight: bold;
-  background-color: govuk-colour("dark-grey");
-  color: govuk-colour("white");
+  color: govuk-colour("black");
 }
 
 .search-results__ranking {
