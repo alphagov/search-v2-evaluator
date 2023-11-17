@@ -7,12 +7,15 @@ class Search
 
   def results
     response["results"].map do |result|
+      timestamp = Time.zone.parse(result["public_timestamp"])
+
       Result.new(
         title: result["title"],
         description: result["description_with_highlighting"],
         link: result["link"],
         content_id: result["content_id"],
         document_type: result["content_store_document_type"],
+        public_timestamp: timestamp,
       )
     end
   end

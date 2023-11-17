@@ -36,13 +36,34 @@
   @include govuk-font($size: 19, $weight: "bold");
 }
 
+.search-results__url {
+  color: $govuk-secondary-text-colour;
+  margin: 2px 0 0 0;
+}
+
 .search-results__description {
-  margin: govuk-spacing(1) 0 0 0;
+  margin: govuk-spacing(2) 0 0 0;
 }
 
 .search-results__metadata {
   margin: govuk-spacing(2) 0 0 0;
-  color: $govuk-secondary-text-colour;
+}
+
+.search-results__metadata-item {
+  display: inline-block;
+  padding: govuk-spacing(1);
+  margin-right: govuk-spacing(1);
+  border-radius: govuk-spacing(1);
+
+  @include govuk-font($size: 14);
+
+  background-color: govuk-colour("light-grey");
+}
+
+.search-results__metadata-item--content-type {
+  font-weight: bold;
+  background-color: govuk-colour("dark-grey");
+  color: govuk-colour("white");
 }
 
 .search-results__ranking {

@@ -3,11 +3,19 @@
     <h2 class="search-results__title">
       <%= govuk_link_to result.title, result.link %>
     </h2>
+    <p class="search-results__url"><%= result.link %></p>
     <p class="search-results__description"><%= result.description %></p>
     <% if show_debug_metadata %>
       <div class="search-results__metadata">
-        Content ID: <%= result.content_id %>,
-        Document Type: <%= result.document_type %>
+        <span class="search-results__metadata-item search-results__metadata-item--content-type">
+          <%= result.document_type %>
+        </span>
+        <span class="search-results__metadata-item">
+          Content ID: <%= result.content_id %>
+        </span>
+        <span class="search-results__metadata-item">
+          <%= result.public_timestamp %>
+        </span>
       </div>
     <% end %>
   </div>
