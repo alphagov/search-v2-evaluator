@@ -1,11 +1,11 @@
 <%= render "govuk_publishing_components/components/layout_for_admin", {
-  environment: "integration",
+  environment: Rails.configuration.govuk_environment,
   product_name: "Search Evaluation",
   browser_title: yield(:title).presence || "Try the new search engine",
 } do %>
   <%= render "govuk_publishing_components/components/skip_link" %>
   <%= render "govuk_publishing_components/components/layout_header", {
-    environment: "integration",
+    environment: Rails.configuration.govuk_environment,
     product_name: "Try the new search engine",
   } %>
   <div class="govuk-width-container">

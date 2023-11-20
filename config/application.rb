@@ -41,5 +41,7 @@ module SearchV2Evaluator
 
     config.assets.prefix = "/assets/search-v2-evaluator"
     config.assets.css_compressor = nil
+
+    config.govuk_environment = ENV.fetch("GOVUK_ENVIRONMENT", "development")
   end
 end
