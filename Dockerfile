@@ -8,8 +8,6 @@ WORKDIR $APP_HOME
 COPY Gemfile* .ruby-version ./
 RUN bundle install
 COPY . .
-RUN bootsnap precompile --gemfile .
-
 
 FROM $base_image
 
