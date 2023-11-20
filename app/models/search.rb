@@ -5,6 +5,10 @@ class Search
 
   attr_accessor :query, :search_options
 
+  def show_results?
+    query.present?
+  end
+
   def results
     response["results"].map do |result|
       timestamp = Time.zone.parse(result["public_timestamp"])
