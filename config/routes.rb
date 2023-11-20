@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   mount GovukPublishingComponents::Engine, at: "/component-guide" if Rails.env.development?
 
+  # Healthchecks
+  get "/healthcheck/live", to: proc { [200, {}, %w[OK]] }
+  get "/healthcheck/ready", to: GovukHealthcheck.rack_response
+
   resource :search, only: %i[show]
   resource :feedback, only: %i[create]
 
