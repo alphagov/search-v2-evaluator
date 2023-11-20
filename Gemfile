@@ -13,6 +13,7 @@ gem "sassc-rails"
 gem "sprockets-rails"
 
 group :development, :test do
+  gem "brakeman", require: false
   gem "debug", platforms: %i[mri windows]
   gem "rubocop-govuk"
 end
