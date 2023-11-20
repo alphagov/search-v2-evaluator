@@ -38,5 +38,8 @@ module SearchV2Evaluator
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.assets.prefix = "/assets/search-v2-evaluator"
+    config.assets.css_compressor = nil
   end
 end
