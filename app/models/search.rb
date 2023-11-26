@@ -20,6 +20,7 @@ class Search
         content_id: result["content_id"],
         document_type: result["content_store_document_type"],
         public_timestamp: timestamp,
+        parts: (result["parts"] || []).map { |part| part["title"] },
       )
     end
   end
