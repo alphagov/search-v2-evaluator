@@ -5,6 +5,12 @@
     </h2>
     <p class="search-results__url"><%= result.link %></p>
     <p class="search-results__description"><%= result.description %></p>
+    <% if result.parts? %>
+      <p class="search-results__parts">
+        <strong>Parts:</strong>
+        <%= result.parts.join(", ") %>
+      </p>
+    <% end %>
     <% if show_metadata? %>
       <div class="search-results__metadata">
         <span class="search-results__metadata-item search-results__metadata-item--content-type">
