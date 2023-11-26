@@ -15,7 +15,7 @@ private
 
   def feedback_params
     params.require(:feedback).permit(
-      :search_query, :suggested_url, :comments, result_ratings: %i[content_id url position rating]
+      :search_query, :suggested_url, :comments, result_ratings_attributes: {}
     )
   end
 end

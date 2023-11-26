@@ -44,8 +44,8 @@
       <div class="govuk-grid-row search-results">
         <div class="govuk-grid-column-full">
           <ul class="search-results__list">
-            <% @search.results.each do |result| %>
-              <%= render partial: "searches/result", locals: { result:, form: } %>
+            <%= form.fields_for :result_ratings do |ff| %>
+              <%= render partial: "searches/result", locals: { form: ff, result: @search.results[ff.object.position] } %>
             <% end %>
           </ul>
         </div>

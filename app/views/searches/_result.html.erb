@@ -1,4 +1,7 @@
 <li class="search-results__result">
+  <%= form.hidden_field :content_id %>
+  <%= form.hidden_field :link %>
+  <%= form.hidden_field :position %>
   <div class="search-results__details">
     <h2 class="search-results__title">
       <%= govuk_link_to result.title, result.link %>
@@ -26,21 +29,11 @@
     <legend class="search-results__ranking-legend">
       How relevant is this result?
     </legend>
-    <label class="search-results__ranking-option search-results__ranking-option--perfect">
-      <%= label result.content_id, "ranking", "Perfect", value: "perfect" %>
-      <%= radio_button result.content_id, "ranking", "perfect" %>
-    </label>
-    <label class="search-results__ranking-option search-results__ranking-option--good">
-      <%= label result.content_id, "ranking", "Good", value: "good" %>
-      <%= radio_button result.content_id, "ranking", "good" %>
-    </label>
-    <label class="search-results__ranking-option search-results__ranking-option--ok">
-      <%= label result.content_id, "ranking", "Okay", value: "ok" %>
-      <%= radio_button result.content_id, "ranking", "ok" %>
-    </label>
-    <label class="search-results__ranking-option search-results__ranking-option--bad">
-      <%= label result.content_id, "ranking", "Bad", value: "bad" %>
-      <%= radio_button result.content_id, "ranking", "bad" %>
-    </label>
+    <% ResultRating.rating_options.each do |value, label| %>
+      <label class="search-results__ranking-option search-results__ranking-option--<%= value %>">
+        <%= form.label :rating, label, value: %>
+        <%= form.radio_button :rating, value %>
+      </label>
+    <% end %>
   </fieldset>
 </li>

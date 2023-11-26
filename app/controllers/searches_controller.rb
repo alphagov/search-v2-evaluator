@@ -1,7 +1,10 @@
 class SearchesController < ApplicationController
   def show
     @search = Search.new(query_params)
-    @feedback = Feedback.new(search_query: @search.query)
+    @feedback = Feedback.new(
+      search_query: @search.query,
+      result_ratings: @search.results.map.with_index { |r, i| ResultRating.new(content_id: r.content_id, link: r.link, position: i) },
+    )
   end
 
 private
