@@ -8,12 +8,4 @@ module ApplicationHelper
 
     link_to text, full_url, class: "govuk-link"
   end
-
-  def show_more_results?
-    ActiveModel::Type::Boolean.new.cast(cookies[:show_more_results])
-  end
-
-  def show_metadata?
-    ActiveModel::Type::Boolean.new.cast(cookies[:show_metadata])
-  end
 end

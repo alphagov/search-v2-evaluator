@@ -8,31 +8,6 @@
         value: @search.query,
         name: "query",
       } %>
-      <% options_selected = @search.search_options&.count || 0 %>
-      <% options_selected_text = " (#{options_selected} selected)" if options_selected.positive? %>
-      <%= render "govuk_publishing_components/components/details", {
-        title: "Advanced options#{options_selected_text}",
-      } do %>
-        <%= render "govuk_publishing_components/components/checkboxes", {
-          name: "search_options[]",
-          heading: "Search options",
-          visually_hide_heading: true,
-          hint_text: "Select any of these options to change how search results are displayed. You will need to search again for these changes to be visible.",
-          small: true,
-          items: [
-            {
-              label: "Show top 10 results (instead of 5)",
-              value: "show_extra_results",
-              checked: @search.search_options&.include?("show_extra_results")
-            },
-            {
-              label: "Show detailed information about results (document types, dates)",
-              value: "show_debug_metadata",
-              checked: @search.search_options&.include?("show_debug_metadata")
-            }
-          ]
-        } %>
-      <% end %>
     </div>
   <% end %>
 </div>
@@ -56,7 +31,7 @@
         <div class="govuk-grid-column-full">
           <ul class="search-results__list">
             <% @search.results.each do |result| %>
-              <%= render partial: "result", locals: { result:, form:, show_debug_metadata: @search.search_options&.include?("show_debug_metadata") } %>
+              <%= render partial: "result", locals: { result:, form: } %>
             <% end %>
           </ul>
         </div>
