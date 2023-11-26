@@ -28,4 +28,7 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  activemodel:
+    attributes:
+      feedback:
+        suggested_url: URL for the best possible result

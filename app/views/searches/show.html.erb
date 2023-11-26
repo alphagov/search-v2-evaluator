@@ -12,6 +12,20 @@
   <% end %>
 </div>
 
+<% if @feedback.errors.any? %>
+  <%= render "govuk_publishing_components/components/error_summary", {
+    id: "error-summary",
+    title: "There was a problem with your feedback",
+    description: "You need to correct these errors before you can submit your feedback.",
+    items: @feedback.errors.details.map { |field, error|
+      {
+        text: @feedback.errors.full_messages_for(field).first,
+        href: "#feedback_#{field}",
+      }
+    }
+  } %>
+<% end %>
+
 <% if @search.show_results? %>
   <div class="results-container">
     <div class="govuk-grid-row">
@@ -31,7 +45,7 @@
         <div class="govuk-grid-column-full">
           <ul class="search-results__list">
             <% @search.results.each do |result| %>
-              <%= render partial: "result", locals: { result:, form: } %>
+              <%= render partial: "searches/result", locals: { result:, form: } %>
             <% end %>
           </ul>
         </div>
@@ -40,10 +54,16 @@
         <div class="govuk-grid-column-two-thirds search-feedback__fields">
           <%= render "govuk_publishing_components/components/details", {
             title: "Is the best possible result not included?",
+            open: @feedback.errors.include?(:suggested_url),
           } do %>
-            <div class="govuk-form-group">
+            <div class="govuk-form-group <%= 'govuk-form-group--error' if @feedback.errors.include?(:suggested_url) %>">
               <%= form.label :suggested_url, "URL for the best possible result", class: "govuk-label" %>
               <div class="govuk-hint">Enter the full URL of a page on GOV.UK (or an external link) that you think is a better result for your query than any of the results shown.</div>
+              <% if @feedback.errors.include?(:suggested_url) %>
+                <p id="national-insurance-number-error" class="govuk-error-message">
+                  <span class="govuk-visually-hidden">Error:</span> <%= @feedback.errors.full_messages_for(:suggested_url).join(", ") %>
+                </p>
+              <% end %>
               <%= form.text_field :suggested_url, class: "govuk-input" %>
             </div>
           <% end %>
