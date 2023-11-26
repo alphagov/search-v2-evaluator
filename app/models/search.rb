@@ -3,7 +3,7 @@ require "gds_api/search"
 class Search
   include ActiveModel::Model
 
-  attr_accessor :query, :search_options
+  attr_accessor :query, :count
 
   def show_results?
     query.present?
@@ -33,10 +33,6 @@ class Search
   end
 
 private
-
-  def count
-    search_options&.include?("show_extra_results") ? 10 : 5
-  end
 
   def response
     @response ||= search_service.search(

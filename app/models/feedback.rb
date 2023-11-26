@@ -6,6 +6,6 @@ class Feedback
   def save
     # TODO: Implement me!
     Rails.logger.info "Feedback submitted: #{inspect}"
-    false
+    true
   end
 end

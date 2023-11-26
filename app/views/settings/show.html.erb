@@ -1,0 +1,42 @@
+<h1 class="govuk-heading-l">Advanced settings</h1>
+<p class="govuk-body">
+  These settings are intended for use within the Search Improvement team and you probably don't need
+  to change them if you just want to give feedback on search results from the perspective of a
+  regular user.
+</p>
+<div class="govuk-inset-text">
+  Settings are stored in your cookies and will be reset if you do not have cookies enabled or clear
+  your browser data.
+</div>
+
+
+<%= form_with url: settings_path, method: :put do |form| %>
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+        <h2 class="govuk-fieldset__heading">
+          Which advanced settings do you want to enable?
+        </h2>
+      </legend>
+      <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+        <div class="govuk-checkboxes__item">
+          <%= form.check_box :show_more_results, class: "govuk-checkboxes__input", checked: @settings[:show_more_results] %>
+          <%= form.label :show_more_results, "Show more results", class: "govuk-label govuk-checkboxes__label" %>
+          <div id="more-results-hint" class="govuk-hint govuk-checkboxes__hint">
+            Show 10 results per page instead of 5
+          </div>
+        </div>
+        <div class="govuk-checkboxes__item">
+          <%= form.check_box :show_metadata, class: "govuk-checkboxes__input", checked: @settings[:show_metadata] %>
+          <%= form.label :show_metadata, "Show metadata for results", class: "govuk-label govuk-checkboxes__label" %>
+          <div id="metadata-hint" class="govuk-hint govuk-checkboxes__hint">
+            Shows additional information like document type or public timestamp for each result
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <div class="govuk-form-group">
+    <%= form.submit "Save settings", class: "govuk-button" %>
+  </div>
+<% end %>
