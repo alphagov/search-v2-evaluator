@@ -15,4 +15,21 @@ class ResultRating
   end
 
   def id = content_id
+
+  def to_bigquery_data
+    {
+      content_id:,
+      url:,
+      position: position + 1, # have it 1-indexed in BigQuery
+      rating:,
+    }
+  end
+
+  def url
+    if link.start_with?("/")
+      Plek.new.website_root + link
+    else
+      link
+    end
+  end
 end
