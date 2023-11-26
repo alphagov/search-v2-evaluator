@@ -8,6 +8,8 @@ gem "gds-api-adapters"
 gem "govuk_app_config"
 gem "govuk_publishing_components"
 
+gem "google-cloud-bigquery"
+
 gem "importmap-rails"
 gem "sassc-rails"
 gem "sprockets-rails"

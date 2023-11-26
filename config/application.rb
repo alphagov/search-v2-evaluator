@@ -43,5 +43,8 @@ module SearchV2Evaluator
     config.assets.css_compressor = nil
 
     config.govuk_environment = ENV.fetch("GOVUK_ENVIRONMENT", "development")
+
+    config.bigquery_dataset = ENV.fetch("BIGQUERY_DATASET")
+    config.bigquery_table = ENV.fetch("BIGQUERY_TABLE")
   end
 end
