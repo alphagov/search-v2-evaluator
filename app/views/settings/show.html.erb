@@ -20,14 +20,14 @@
       </legend>
       <div class="govuk-checkboxes" data-module="govuk-checkboxes">
         <div class="govuk-checkboxes__item">
-          <%= form.check_box :show_more_results, class: "govuk-checkboxes__input", checked: @show_more_results %>
+          <%= form.check_box :show_more_results, class: "govuk-checkboxes__input", checked: @settings[:show_more_results] %>
           <%= form.label :show_more_results, "Show more results", class: "govuk-label govuk-checkboxes__label" %>
           <div id="more-results-hint" class="govuk-hint govuk-checkboxes__hint">
             Show 10 results per page instead of 5
           </div>
         </div>
         <div class="govuk-checkboxes__item">
-          <%= form.check_box :show_metadata, class: "govuk-checkboxes__input", checked: @show_metadata %>
+          <%= form.check_box :show_metadata, class: "govuk-checkboxes__input", checked: @settings[:show_metadata] %>
           <%= form.label :show_metadata, "Show metadata for results", class: "govuk-label govuk-checkboxes__label" %>
           <div id="metadata-hint" class="govuk-hint govuk-checkboxes__hint">
             Shows additional information like document type or public timestamp for each result
