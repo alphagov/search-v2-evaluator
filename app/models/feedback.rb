@@ -20,8 +20,23 @@ class Feedback
   def save
     return false unless valid?
 
-    # TODO: Implement me!
-    Rails.logger.info "Feedback submitted: #{inspect}"
-    true
+    dataset = Google::Cloud::Bigquery.new.dataset(Rails.configuration.bigquery_dataset)
+    table = dataset.table(Rails.configuration.bigquery_table)
+
+    data = to_bigquery_row
+    table.insert(data)
+    Rails.logger.info "Feedback submitted: #{data.inspect}"
+  end
+
+  def to_bigquery_row
+    {
+      query_id: SecureRandom.uuid,
+      anonymised_user_id: "not-yet-available",
+      timestamp: Time.zone.now.utc.strftime("%Y-%m-%dT%H:%M:%S.%3NZ"),
+      search_query:,
+      result_ratings: result_ratings.map(&:to_bigquery_data),
+      suggested_url:,
+      comments:,
+    }
   end
 end
