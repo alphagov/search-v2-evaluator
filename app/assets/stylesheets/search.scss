@@ -129,19 +129,19 @@
   box-shadow: 0 0 0 8px $govuk-focus-colour;
 }
 
-.search-results__ranking-option--perfect input:checked {
+.search-results__ranking-option--3 input:checked {
   background-color: govuk-colour("blue");
 }
 
-.search-results__ranking-option--good input:checked {
+.search-results__ranking-option--2 input:checked {
   background-color: govuk-colour("green");
 }
 
-.search-results__ranking-option--ok input:checked {
+.search-results__ranking-option--1 input:checked {
   background-color: govuk-colour("orange");
 }
 
-.search-results__ranking-option--bad input:checked {
+.search-results__ranking-option--0 input:checked {
   background-color: govuk-colour("red");
 }
 

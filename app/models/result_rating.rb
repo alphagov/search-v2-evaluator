@@ -1,16 +1,18 @@
 class ResultRating
   RATING_OPTIONS = {
-    0 => "Bad",
-    1 => "OK",
-    2 => "Good",
     3 => "Perfect",
+    2 => "Good",
+    1 => "OK",
+    0 => "Bad",
   }.freeze
 
   include ActiveModel::Model
 
-  attr_accessor :content_id, :url, :position, :rating
+  attr_accessor :content_id, :link, :position, :rating
 
   def self.rating_options
     RATING_OPTIONS
   end
+
+  def id = content_id
 end
