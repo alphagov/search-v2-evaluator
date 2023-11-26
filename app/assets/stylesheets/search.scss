@@ -12,7 +12,9 @@
 .results-container__rate {
   @include govuk-font($size: 19);
 
-  text-align: right;
+  @include govuk-media-query($from: tablet) {
+    text-align: right;
+  }
 }
 
 .search-results__list {
@@ -22,7 +24,9 @@
 }
 
 .search-results__result {
-  display: flex;
+  @include govuk-media-query($from: tablet) {
+    display: flex;
+  }
 
   border-top: 1px solid $govuk-border-colour;
   padding-top: govuk-spacing(4);
@@ -81,6 +85,10 @@
 }
 
 .search-results__ranking {
+  @include govuk-media-query($until: tablet) {
+    margin-top: govuk-spacing(4);
+  }
+
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: govuk-spacing(2);
