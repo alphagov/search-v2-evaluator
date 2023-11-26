@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "/healthcheck/ready", to: GovukHealthcheck.rack_response
 
   resource :search, only: %i[show]
-  resource :feedback, only: %i[create]
+  resource :feedbacks, only: %i[create]
 
   get "/how-to-rate", to: "pages#how_to_rate", as: :how_to_rate
 
