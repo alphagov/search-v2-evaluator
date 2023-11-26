@@ -44,7 +44,7 @@ module SearchV2Evaluator
 
     config.govuk_environment = ENV.fetch("GOVUK_ENVIRONMENT", "development")
 
-    config.bigquery_dataset = ENV.fetch("BIGQUERY_DATASET")
-    config.bigquery_table = ENV.fetch("BIGQUERY_TABLE")
+    config.bigquery_dataset = ENV.fetch("BIGQUERY_DATASET", "search_v2_evaluator")
+    config.bigquery_table = ENV.fetch("BIGQUERY_TABLE", "evaluator_ratings")
   end
 end
