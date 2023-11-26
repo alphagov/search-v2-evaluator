@@ -37,15 +37,7 @@
   <% end %>
 </div>
 
-<% if flash[:success] %>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-    <%= render "govuk_publishing_components/components/success_alert", {
-      message: flash[:success]
-    } %>
-    </div>
-  </div>
-<% elsif @search.show_results? %>
+<% if @search.show_results? %>
   <div class="results-container">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-half">
