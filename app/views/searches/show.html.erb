@@ -58,20 +58,36 @@
         <%= link_to "Learn how to rate results", how_to_rate_path, class: "govuk-link" %>
       </div>
     </div>
-    <%= form_with url: feedback_path do %>
+    <%= form_with model: @feedback do |form| %>
+      <%= form.hidden_field :search_query %>
       <div class="govuk-grid-row search-results">
         <div class="govuk-grid-column-full">
           <ul class="search-results__list">
             <% @search.results.each do |result| %>
-              <%= render partial: "result", locals: { result:, show_debug_metadata: @search.search_options&.include?("show_debug_metadata") } %>
+              <%= render partial: "result", locals: { result:, form:, show_debug_metadata: @search.search_options&.include?("show_debug_metadata") } %>
             <% end %>
           </ul>
         </div>
       </div>
       <div class="govuk-grid-row search-feedback">
         <div class="govuk-grid-column-two-thirds search-feedback__fields">
-          <%# TODO: extra feedback fields %>
-          ...
+          <%= render "govuk_publishing_components/components/details", {
+            title: "Is the best possible result not included?",
+          } do %>
+            <div class="govuk-form-group">
+              <%= form.label :suggested_url, "URL for the best possible result", class: "govuk-label" %>
+              <div class="govuk-hint">Enter the full URL of a page on GOV.UK (or an external link) that you think is a better result for your query than any of the results shown.</div>
+              <%= form.text_field :suggested_url, class: "govuk-input" %>
+            </div>
+          <% end %>
+
+          <%= render "govuk_publishing_components/components/details", {
+            title: "Do you have any other comments about these results?",
+          } do %>
+            <%= form.label :comments, "Your comments about these results", class: "govuk-label" %>
+            <div class="govuk-hint">For example, ...</div>
+            <%= form.text_area :comments, class: "govuk-textarea" %>
+          <% end %>
         </div>
         <div class="govuk-grid-column-one-third search-feedback__submit">
           <%= render "govuk_publishing_components/components/button", {
