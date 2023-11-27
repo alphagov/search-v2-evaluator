@@ -1,3 +1,5 @@
+require "google/cloud/bigquery"
+
 class Feedback
   include ActiveModel::Model
   include ActiveModel::Validations
