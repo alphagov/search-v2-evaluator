@@ -28,29 +28,20 @@ jobs:
     uses: alphagov/govuk-infrastructure/.github/workflows/rubocop.yml@main
 
   test-ruby:
-    name: Test Rails
+    name: Test Ruby
     runs-on: ubuntu-latest
+    env:
+      # As we're running the tests through Rake, we need to make sure they are run in the `test`
+      # Rails env rather than `development`
+      RAILS_ENV: test
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+      - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-
-      - name: Precompile assets
-        uses: alphagov/govuk-infrastructure/.github/actions/precompile-rails-assets@main
-
-      - name: Run unit tests
-        env:
-          RAILS_ENV: test
-        run: bin/rails test
-
-      - name: Run system tests
-        env:
-          RAILS_ENV: test
-        run: bin/rails test:system
+      - run: bin/rake
 
   security-analysis:
     name: Security Analysis
