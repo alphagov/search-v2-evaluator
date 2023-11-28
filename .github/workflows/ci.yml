@@ -22,10 +22,35 @@ jobs:
   dependency-review:
     name: Dependency Review scan
     uses: alphagov/govuk-infrastructure/.github/workflows/dependency-review.yml@main
-  
+
   lint-ruby:
     name: Lint Ruby
     uses: alphagov/govuk-infrastructure/.github/workflows/rubocop.yml@main
+
+  test-ruby:
+    name: Test Rails
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Precompile assets
+        uses: alphagov/govuk-infrastructure/.github/actions/precompile-rails-assets@main
+
+      - name: Run unit tests
+        env:
+          RAILS_ENV: test
+        run: bin/rails test
+
+      - name: Run system tests
+        env:
+          RAILS_ENV: test
+        run: bin/rails test:system
 
   security-analysis:
     name: Security Analysis
