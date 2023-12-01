@@ -4,6 +4,9 @@ require_relative "../config/environment"
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require "rspec/rails"
 
+# We're using rack-test for simplicity, but we need to be able to find fields in <details> elements
+Capybara.ignore_hidden_elements = false
+
 RSpec.configure do |config|
   config.before(:each, type: :system) do
     # We don't have JS, so rack_test will suffice
