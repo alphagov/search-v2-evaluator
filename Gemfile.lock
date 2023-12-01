@@ -100,6 +100,7 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     declarative (0.0.20)
+    diff-lcs (1.5.0)
     domain_name (0.6.20231109)
     drb (2.2.0)
       ruby2_keywords
@@ -498,6 +499,23 @@ GEM
     retriable (3.1.2)
     rexml (3.2.6)
     rouge (4.2.0)
+    rspec-core (3.12.2)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.6)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-rails (6.1.0)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
+    rspec-support (3.12.1)
     rubocop (1.55.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -601,6 +619,7 @@ DEPENDENCIES
   govuk_publishing_components
   importmap-rails
   rails (~> 7.1.2)
+  rspec-rails
   rubocop-govuk
   sassc-rails
   selenium-webdriver
