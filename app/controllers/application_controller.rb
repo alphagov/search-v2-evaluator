@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
 
 private
 
+  def user_id
+    cookies[:user_id] ||= SecureRandom.uuid
+  end
+
   def show_more_results?
     ActiveModel::Type::Boolean.new.cast(cookies[:show_more_results])
   end

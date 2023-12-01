@@ -80,10 +80,7 @@ RSpec.describe "Submitting feedback", type: :system do
 
     # Sends the right data to Bigquery
     expect(bigquery_table).to have_received(:insert).with(
-      {
-        anonymised_user_id: "not-yet-available",
-        comments: "",
-        query_id: anything,
+      hash_including(
         result_ratings: [{ content_id: "3fc2d1a1-bc9b-4875-899a-54a1fd968175",
                            position: 1,
                            rating: 3,
@@ -97,9 +94,8 @@ RSpec.describe "Submitting feedback", type: :system do
                            rating: 0,
                            url: "http://www.dev.gov.uk/government/publications/government-digital-service-it-platform-privacy-notice" }],
         search_query: "government digital service",
-        suggested_url: "",
         timestamp: a_string_matching(Time.zone.now.strftime("%Y-%m-%d")),
-      },
+      ),
     )
 
     # Shows a nice message
@@ -145,6 +141,33 @@ RSpec.describe "Submitting feedback", type: :system do
       expect(page).to have_checked_field("Good")
     end
     expect(page).to have_field("URL for the best possible result", with: "bad url")
+  end
+
+  scenario "submitting feedback includes user ID" do
+    page.driver.browser.set_cookie("user_id=foo-bar")
+
+    perform_search
+    click_on "Submit feedback"
+
+    expect(bigquery_table).to have_received(:insert).with(
+      hash_including(
+        anonymised_user_id: "foo-bar",
+      ),
+    )
+  end
+
+  scenario "visiting without cookies generates a user ID cookie on first visit" do
+    page.driver.browser.clear_cookies
+    visit "/"
+
+    perform_search
+    click_on "Submit feedback"
+
+    expect(bigquery_table).to have_received(:insert).with(
+      hash_including(
+        anonymised_user_id: a_string_matching(/\A[a-f0-9-]{36}\z/),
+      ),
+    )
   end
 
   def perform_search
