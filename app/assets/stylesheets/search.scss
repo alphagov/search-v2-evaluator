@@ -57,11 +57,10 @@
 
 .search-results__parts {
   margin: govuk-spacing(2) 0 0 0;
-  padding: govuk-spacing(1);
+  padding: govuk-spacing(2);
   border-radius: govuk-spacing(1);
 
-  background-color: govuk-colour("blue");
-  color: govuk-colour("white");
+  background-color: govuk-colour("light-grey");
 }
 
 .search-results__metadata {
@@ -81,7 +80,6 @@
 
 .search-results__metadata-item--content-type {
   font-weight: bold;
-  color: govuk-colour("black");
 }
 
 .search-results__ranking {

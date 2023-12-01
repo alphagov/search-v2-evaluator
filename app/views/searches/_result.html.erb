@@ -20,7 +20,7 @@
           <%= result.document_type %>
         </span>
         <span class="search-results__metadata-item">
-          Updated <%= result.public_timestamp.strftime("%e %b %Y") %> (<%= time_ago_in_words result.public_timestamp %> ago)
+          Public timestamp: <%= result.public_timestamp.strftime("%e %b %Y") %> (<%= time_ago_in_words result.public_timestamp %> ago)
         </span>
       </div>
     <% end %>
