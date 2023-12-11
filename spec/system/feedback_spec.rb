@@ -118,7 +118,7 @@ RSpec.describe "Submitting feedback", type: :system do
         hash_including(
           {
             comments: "Looking good!",
-            suggested_url: suggested_url,
+            suggested_url:,
           },
         ),
       )
