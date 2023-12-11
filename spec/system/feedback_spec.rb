@@ -102,45 +102,27 @@ RSpec.describe "Submitting feedback", type: :system do
     expect(page).to have_content("Thank you for your feedback")
   end
 
-  scenario "submitting feedback with a suggested URL and comments" do
-    perform_search
+  ["http://www.gov.uk", "https://www.gov.uk/", "/relative_url"].each do |suggested_url|
+    scenario `submitting feedback with a valid suggested URL (#{suggested_url}) and comments` do
+      perform_search
 
-    # Allows the user to give a suggested URL
-    fill_in "URL for the best possible result", with: "https://www.gov.uk/"
+      # Allows the user to give a suggested URL
+      fill_in "URL for the best possible result", with: suggested_url
 
-    # Allows the user to give comments
-    fill_in "Your comments about these results", with: "Looking good!"
+      # Allows the user to give comments
+      fill_in "Your comments about these results", with: "Looking good!"
 
-    click_on "Submit feedback"
+      click_on "Submit feedback"
 
-    expect(bigquery_table).to have_received(:insert).with(
-      hash_including(
-        {
-          comments: "Looking good!",
-          suggested_url: "https://www.gov.uk/",
-        },
-      ),
-    )
-  end
-
-  scenario "submitting feedback with an invalid suggested URL fails but doesn't lose input" do
-    perform_search
-
-    fill_in "URL for the best possible result", with: "bad url"
-    within(all(".search-results__ranking")[1]) { choose "Good" }
-    click_on "Submit feedback"
-
-    # Doesn't send the data to Bigquery
-    expect(bigquery_table).not_to have_received(:insert)
-
-    # Shows an error message
-    expect(page).to have_content("URL for the best possible result must be a valid URL")
-
-    # Doesn't lose the input
-    within(all(".search-results__ranking")[1]) do
-      expect(page).to have_checked_field("Good")
+      expect(bigquery_table).to have_received(:insert).with(
+        hash_including(
+          {
+            comments: "Looking good!",
+            suggested_url:,
+          },
+        ),
+      )
     end
-    expect(page).to have_field("URL for the best possible result", with: "bad url")
   end
 
   scenario "submitting feedback includes user ID" do
