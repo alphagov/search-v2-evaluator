@@ -33,6 +33,10 @@ class Search
     response["total"]
   end
 
+  def discovery_engine_attribution_token
+    response["discovery_engine_attribution_token"]
+  end
+
 private
 
   def response

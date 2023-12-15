@@ -6,7 +6,7 @@ class Feedback
 
   validates :suggested_url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), allow_blank: true, message: "must be a valid URL" }
 
-  attr_accessor :search_query, :result_ratings, :suggested_url, :comments, :user_id
+  attr_accessor :search_query, :result_ratings, :suggested_url, :comments, :user_id, :discovery_engine_attribution_token
 
   def result_ratings_attributes=(attributes)
     @result_ratings = attributes.map do |_, v|
@@ -39,6 +39,7 @@ class Feedback
       result_ratings: result_ratings.map(&:to_bigquery_data),
       suggested_url:,
       comments:,
+      discovery_engine_attribution_token:,
     }
   end
 end

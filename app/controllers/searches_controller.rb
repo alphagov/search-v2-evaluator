@@ -4,6 +4,7 @@ class SearchesController < ApplicationController
     @feedback = Feedback.new(
       search_query: @search.query,
       result_ratings: @search.results.map.with_index { |r, i| ResultRating.new(content_id: r.content_id, link: r.link, position: i) },
+      discovery_engine_attribution_token: @search.discovery_engine_attribution_token,
     )
   end
 

@@ -41,6 +41,7 @@
     </div>
     <%= form_with model: @feedback do |form| %>
       <%= form.hidden_field :search_query %>
+      <%= form.hidden_field :discovery_engine_attribution_token %>
       <div class="govuk-grid-row search-results">
         <div class="govuk-grid-column-full">
           <ul class="search-results__list">
