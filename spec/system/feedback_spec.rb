@@ -40,7 +40,8 @@ RSpec.describe "Submitting feedback", type: :system do
           "is_historic" => false },
       ],
       "total" => 28_766,
-      "start" => 0 }
+      "start" => 0,
+      "discovery_engine_attribution_token" => "footobar" }
   end
 
   let(:bigquery) { double("BigQuery client", dataset: bigquery_dataset) }
@@ -56,7 +57,7 @@ RSpec.describe "Submitting feedback", type: :system do
     allow(bigquery_dataset).to receive(:table).with("evaluator_ratings").and_return(bigquery_table)
   end
 
-  scenario "performing a basic search and submitting result-level feedback" do
+  scenario "performing a basic search" do
     perform_search
 
     # Makes the right query to the search API v2
@@ -95,6 +96,7 @@ RSpec.describe "Submitting feedback", type: :system do
                            url: "http://www.dev.gov.uk/government/publications/government-digital-service-it-platform-privacy-notice" }],
         search_query: "government digital service",
         timestamp: a_string_matching(Time.zone.now.strftime("%Y-%m-%d")),
+        discovery_engine_attribution_token: "footobar",
       ),
     )
 
