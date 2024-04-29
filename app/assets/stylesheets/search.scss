@@ -71,6 +71,7 @@
   display: inline-block;
   padding: govuk-spacing(1);
   margin-right: govuk-spacing(1);
+  margin-top: govuk-spacing(1);
   border-radius: govuk-spacing(1);
 
   @include govuk-font($size: 14);
